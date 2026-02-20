@@ -80,5 +80,5 @@ To list skills in any repo without installing: `npx skills add owner/repo --list
 
 Examples:
 
-    npx skills add github/awesome-copilot/skills --list
-    npx skills add Lichens-Innovation/skills --list
+- `npx skills add github/awesome-copilot/skills --list`
+- `npx skills add Lichens-Innovation/skills --list`
