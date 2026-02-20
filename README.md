@@ -23,6 +23,26 @@ npx skills add Lichens-Innovation/skills
 - **Target agents**: `npx skills add Lichens-Innovation/skills -a cursor -a github-copilot -a claude-code`.
 - **List skills** without installing: `npx skills add Lichens-Innovation/skills --list`.
 
+## Removing a skill
+
+To uninstall a skill that was previously added:
+
+```bash
+# Remove a specific skill by name (e.g. hello-world)
+npx skills remove hello-world
+
+# Interactive: choose which skill(s) to remove
+npx skills remove
+
+# Remove from global scope (if you installed with -g)
+npx skills remove hello-world --global
+
+# Remove from specific agents only
+npx skills remove hello-world --agent cursor --agent claude-code
+```
+
+You can use the `rm` alias: `npx skills rm hello-world`. To see what is installed: `npx skills list`.
+
 ## How a skill becomes active (Cursor, Copilot, Claude Code)
 
 1. **Installation**  
