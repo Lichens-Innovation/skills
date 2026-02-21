@@ -7,6 +7,7 @@ Lichens Innovation **Agent Skills** repository — reusable instructions to exte
   - [Removing a skill](#removing-a-skill)
   - [Frequent CLI commands](#frequent-cli-commands)
   - [How a skill becomes active (Cursor, Copilot, Claude Code)](#how-a-skill-becomes-active-cursor-copilot-claude-code)
+  - [Skills for creating skills (comparison)](#skills-for-creating-skills-comparison)
   - [Popular skill repositories](#popular-skill-repositories)
 
 ## Installation
@@ -82,6 +83,19 @@ You can use the `rm` alias: `npx skills rm hello-world`. To see what is installe
    When your question or request matches the **usage context** described in the skill (e.g. “When to use”, description), the agent injects that skill into context and follows its **Instructions**. The skill is therefore active whenever it is relevant, with no extra action on your part.
 
 In short: **install** → **files in the right place** → **the agent reads and applies the skill when relevant**.
+
+## Skills for creating skills (comparison)
+
+Two built-in skills help you create skills from scratch. Summary:
+
+| Criterion | **skill-creator** | **create-skill** |
+|--------|--------------------|-------------------|
+| Target | Skills for agent (Claude) in general | Cursor-only skills |
+| Tooling | `init_skill.py`, `package_skill.py`, `.skill` file | No scripts, manual creation |
+| Process | 6 steps (including init + package) | 4 phases (Discovery → Verify) |
+| Resources | scripts / references / assets clearly defined | scripts/ and optional files (reference.md, examples.md) |
+| Packaging | Yes → distributable `.skill` file | No, skills created in place |
+| Best practices | Structure, progressive disclosure, « quoi ne pas mettre » | Descriptions, anti-patterns, patterns d’écriture, checklist |
 
 ## Popular skill repositories
 
