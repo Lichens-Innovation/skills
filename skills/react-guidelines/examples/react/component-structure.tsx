@@ -6,16 +6,18 @@
 import React, { useState, useEffect, FunctionComponent } from "react";
 
 // ─────────────────────────────────────────────
-// BASIC COMPONENT — props interface + defaults
+// BASIC COMPONENT — props interface + defaults (no inline types)
 // ─────────────────────────────────────────────
 
-// ✅ GOOD
+type ButtonVariant = "primary" | "secondary" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
+
 interface ButtonProps {
   children: React.ReactNode;
   onClick: () => void;
   disabled?: boolean;
-  variant?: "primary" | "secondary" | "danger";
-  size?: "sm" | "md" | "lg";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 }
 
 export const Button: FunctionComponent<ButtonProps> = ({
@@ -86,10 +88,12 @@ export const DataDisplayBad: FunctionComponent<DataDisplayProps> = ({
 // COMPONENT WITH DATA FETCHING
 // ─────────────────────────────────────────────
 
+type MarketStatus = "active" | "resolved" | "closed";
+
 interface Market {
   id: string;
   name: string;
-  status: "active" | "resolved" | "closed";
+  status: MarketStatus;
 }
 
 interface MarketCardProps {
@@ -162,6 +166,10 @@ export const MarketCard: FunctionComponent<MarketCardProps> = ({
 const fetchMarket = async (id: string): Promise<Market> =>
   ({ id, name: "Example", status: "active" });
 const Spinner = () => <div>Loading...</div>;
-const ErrorMessage: FunctionComponent<{ message: string }> = ({ message }) => (
+
+interface ErrorMessageProps {
+  message: string;
+}
+const ErrorMessage: FunctionComponent<ErrorMessageProps> = ({ message }) => (
   <div>{message}</div>
 );

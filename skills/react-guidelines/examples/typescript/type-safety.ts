@@ -1,19 +1,21 @@
 /**
  * TYPE SAFETY — TypeScript
  * Rule: NEVER use `any`. Define precise interfaces and use union types.
+ *       Do NOT define types inline — extract to named types (DRY, reuse).
  */
 export {};
 
 // ─────────────────────────────────────────────
-// INTERFACES vs `any`
+// INTERFACES vs `any` — named types, no inline
 // ─────────────────────────────────────────────
 
-// ✅ GOOD — explicit shape
+type MarketStatus = "active" | "resolved" | "closed";
+
 interface Market {
   id: string;
   name: string;
   description: string;
-  status: "active" | "resolved" | "closed";
+  status: MarketStatus;
   createdAt: Date;
   resolvedAt?: Date; // optional field
 }
@@ -57,12 +59,17 @@ const sortMarketsBad = (markets: any[], direction: string): any[] =>
 // GENERICS — reusable typed utilities
 // ─────────────────────────────────────────────
 
-// ✅ GOOD — typed API response wrapper
+// ✅ GOOD — typed API response wrapper (meta extracted to named type)
+interface ApiResponseMeta {
+  total: number;
+  page: number;
+  limit: number;
+}
 interface ApiResponse<T> {
   success: boolean;
   data?: T;
   error?: string;
-  meta?: { total: number; page: number; limit: number };
+  meta?: ApiResponseMeta;
 }
 
 const apiFetch = async <T>(url: string): Promise<ApiResponse<T>> => {

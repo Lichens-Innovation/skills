@@ -145,8 +145,11 @@ const safeParseJson = async <T>(text: string): Promise<Result<T>> => {
   }
 };
 
-// Usage
-const result = await safeParseJson<{ name: string }>('{"name": "Alice"}');
+// Usage — use a named type instead of inline { name: string }
+interface JsonNamePayload {
+  name: string;
+}
+const result = await safeParseJson<JsonNamePayload>('{"name": "Alice"}');
 if (result.success) {
   console.log(result.data.name); // TypeScript knows this is safe
 } else {

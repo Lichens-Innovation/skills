@@ -15,9 +15,13 @@ interface Engine {
   id: number;
   name: string;
 }
+interface PumpTestStatusDto {
+  StatusKey?: string;
+  Description?: string;
+}
 interface PumpInfo {
   testId: string;
-  status?: { StatusKey?: string } | null;
+  status?: PumpTestStatusDto | null;
 }
 interface TableState {
   pageIndex: number;
@@ -32,10 +36,6 @@ interface UserCapabilities {
   canEdit: boolean;
 }
 type StatusLabelKey = "passed" | "failed" | "warning";
-interface PumpTestStatusDto {
-  StatusKey?: string;
-  Description?: string;
-}
 interface DisplayToastErrorArgs {
   error?: unknown;
   message?: string;

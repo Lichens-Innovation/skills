@@ -32,21 +32,30 @@ export const Counter: FunctionComponent = () => {
 };
 
 // ─────────────────────────────────────────────
-// useReducer — for complex state with multiple sub-values
+// useReducer — for complex state with multiple sub-values (named types, no inline)
 // ─────────────────────────────────────────────
 
+type FilterStatus = "all" | "active" | "resolved" | "closed";
+type MarketSortBy = "name" | "createdAt" | "status";
+type SortDirection = "asc" | "desc";
+
+interface SortPayload {
+  by: MarketSortBy;
+  direction: SortDirection;
+}
+
 interface MarketFilters {
-  status: "all" | "active" | "resolved" | "closed";
+  status: FilterStatus;
   searchQuery: string;
-  sortBy: "name" | "createdAt" | "status";
-  sortDirection: "asc" | "desc";
+  sortBy: MarketSortBy;
+  sortDirection: SortDirection;
   page: number;
 }
 
 type FilterAction =
-  | { type: "SET_STATUS"; payload: MarketFilters["status"] }
+  | { type: "SET_STATUS"; payload: FilterStatus }
   | { type: "SET_SEARCH"; payload: string }
-  | { type: "SET_SORT"; payload: { by: MarketFilters["sortBy"]; direction: MarketFilters["sortDirection"] } }
+  | { type: "SET_SORT"; payload: SortPayload }
   | { type: "SET_PAGE"; payload: number }
   | { type: "RESET" };
 
@@ -94,7 +103,7 @@ export const MarketFiltersPanel: FunctionComponent = () => {
         onChange={(e) =>
           dispatch({
             type: "SET_STATUS",
-            payload: e.target.value as MarketFilters["status"],
+            payload: e.target.value as FilterStatus,
           })
         }
       >

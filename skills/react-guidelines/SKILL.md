@@ -27,6 +27,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob
 7. **NO magic numbers** — extract as named constants
 8. **NO deep nesting** (max 4 levels) — use early returns
 9. **Prefer `??` over `||`** for null/undefined — use nullish coalescing (`??`) so that `0`, `""`, and `false` are not treated as missing
+10. **NO inline types** — extract types/interfaces to named declarations (DRY, reuse, single source of truth)
 
 ---
 
@@ -64,7 +65,7 @@ After reading this skill:
 | Immutability patterns      | `examples/typescript/immutability.ts`   | When working with state/objects/arrays |
 | Error handling             | `examples/typescript/error-handling.ts` | When writing async code                |
 | Async / Promise patterns   | `examples/typescript/async-patterns.ts` | When using await/Promise               |
-| Type safety                | `examples/typescript/type-safety.ts`    | When defining interfaces/types         |
+| Type safety                | `examples/typescript/type-safety.ts`    | When defining interfaces/types (no inline types; extract named types) |
 
 ### React
 
@@ -111,6 +112,7 @@ Before returning any code, verify each point:
 
 - [ ] Every function is **under 50 lines** → if not, split it
 - [ ] No `any` types → replace with proper interfaces
+- [ ] No inline types → extract to named types/interfaces (DRY, reuse)
 - [ ] All async functions have **try/catch** → add if missing
 - [ ] No direct mutations → convert to spread pattern
 - [ ] No magic numbers → extract as named constants

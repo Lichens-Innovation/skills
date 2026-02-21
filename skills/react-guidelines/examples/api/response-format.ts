@@ -63,10 +63,12 @@ const paginatedResponse = <T>({
 // ROUTE HANDLER EXAMPLES (Next.js / Express style)
 // ─────────────────────────────────────────────
 
+type MarketStatus = "active" | "resolved" | "closed";
+
 interface Market {
   id: string;
   name: string;
-  status: "active" | "resolved" | "closed";
+  status: MarketStatus;
 }
 
 // ✅ GOOD — single item
