@@ -1,3 +1,12 @@
+- [Agent Skills: History, Timeline \& Industry Adoption](#agent-skills-history-timeline--industry-adoption)
+  - [1. Origin of the Concept and Standard](#1-origin-of-the-concept-and-standard)
+  - [2. Key Dates (Chronological Order)](#2-key-dates-chronological-order)
+  - [3. Adoption by Major Players](#3-adoption-by-major-players)
+    - [GitHub Copilot](#github-copilot)
+    - [Cursor](#cursor)
+    - [Anthropic (Claude Code)](#anthropic-claude-code)
+  - [4. Summary](#4-summary)
+
 # Agent Skills: History, Timeline & Industry Adoption
 
 A concise summary of how Agent Skills emerged, the key dates, and how major players (Cursor, GitHub Copilot, Anthropic) adopted the concept.
