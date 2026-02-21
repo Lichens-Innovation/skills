@@ -52,15 +52,20 @@ You can use the `rm` alias: `npx skills rm hello-world`. To see what is installe
 
 ## Frequent CLI commands
 
-| Task                                 | Command                                                           |
-| ------------------------------------ | ----------------------------------------------------------------- |
-| Check for updates                    | `npx skills check`                                                |
-| Update all skills                    | `npx skills update`                                               |
-| Generate lock file                   | `npx skills generate-lock`                                        |
-| Generate lock file (dry run)         | `npx skills generate-lock --dry-run`                              |
-| Discover skills                      | `npx skills find react`                                           |
-| Install a specific skill from a repo | `npx skills add vercel-labs/agent-skills --skill frontend-design` |
-| Create a new skill                   | `npx skills init my-custom-skill`                                 |
+| Task                                 | Command                                                            |
+| ------------------------------------ | ------------------------------------------------------------------ |
+| Check for updates                    | `npx skills check`                                                 |
+| Update all skills                    | `npx skills update`                                                |
+| Generate lock file                   | `npx skills generate-lock`                                         |
+| Generate lock file (dry run)         | `npx skills generate-lock --dry-run`                               |
+| Discover skills                      | `npx skills find react`                                            |
+| Install a specific skill from a repo | `npx skills add vercel-labs/agent-skills --skill frontend-design`  |
+| Create a new skill                   | `npx skills init my-custom-skill`                                  |
+| Remove a specific skill              | `npx skills remove hello-world`                                    |
+| Remove skills (interactive)          | `npx skills remove`                                                |
+| Remove from global scope             | `npx skills remove hello-world --global`                           |
+| Remove from specific agents only     | `npx skills remove hello-world --agent cursor --agent claude-code` |
+| List installed skills                | `npx skills list`                                                  |
 
 ## How a skill becomes active (Cursor, Copilot, Claude Code)
 
