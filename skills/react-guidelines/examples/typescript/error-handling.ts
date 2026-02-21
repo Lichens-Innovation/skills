@@ -1,9 +1,59 @@
 /**
  * ERROR HANDLING PATTERNS
- * Rule: ALL async functions must have try/catch with meaningful error messages.
- *       Never silently swallow errors.
+ * Important Rules:
+ * - Avoid nested try-catch blocks.
+ * - Add context to the error message.
+ * - Avoid silently swallow errors (rethrow the error or explain why it's ok to swallow).
  */
 export {};
+
+// ─────────────────────────────────────────────
+// AVOID NESTED TRY-CATCH
+// ─────────────────────────────────────────────
+// Nested try-catch blocks make the code hard to follow and maintain.
+// Prefer a single try-catch at the call site, or extract logic into
+// small functions that each handle one level of errors.
+
+// ❌ BAD — nested try-catch, unclear flow and duplicated handling
+const processOrderBad = async (orderId: string) => {
+  try {
+    const order = await fetchOrder(orderId);
+    try {
+      const payment = await chargePayment(order);
+      try {
+        await sendConfirmation(payment);
+        return { success: true };
+      } catch (e: unknown) {
+        console.error("Confirmation failed:", e);
+        throw e;
+      }
+    } catch (e: unknown) {
+      console.error("Payment failed:", e);
+      throw e;
+    }
+  } catch (e: unknown) {
+    console.error("Order fetch failed:", e);
+    throw e;
+  }
+};
+
+// ✅ GOOD — single try-catch, or small functions with one responsibility
+const processOrderGood = async (orderId: string) => {
+  try {
+    const order = await fetchOrder(orderId);
+    const payment = await chargePayment(order);
+    await sendConfirmation(payment);
+    return { success: true };
+  } catch (error: unknown) {
+    console.error("[processOrder] failed:", error);
+    throw error;
+  }
+};
+
+// Placeholder stubs for nested try-catch example
+const fetchOrder = async (_id: string) => ({ id: "1" });
+const chargePayment = async (_order: unknown) => ({ id: "pay-1" });
+const sendConfirmation = async (_payment: unknown) => {};
 
 // ─────────────────────────────────────────────
 // BASIC FETCH WITH ERROR HANDLING
@@ -47,7 +97,10 @@ class ApiError extends Error {
 }
 
 class ValidationError extends Error {
-  constructor(message: string, public fields: Record<string, string>) {
+  constructor(
+    message: string,
+    public fields: Record<string, string>
+  ) {
     super(message);
     this.name = "ValidationError";
   }
@@ -77,9 +130,7 @@ const createMarket = async (data: unknown) => {
 // RESULT PATTERN (functional alternative)
 // ─────────────────────────────────────────────
 
-type Result<T, E = Error> =
-  | { success: true; data: T }
-  | { success: false; error: E };
+type Result<T, E = Error> = { success: true; data: T } | { success: false; error: E };
 
 // ✅ GOOD — explicit success/failure without throwing
 const safeParseJson = async <T>(text: string): Promise<Result<T>> => {
