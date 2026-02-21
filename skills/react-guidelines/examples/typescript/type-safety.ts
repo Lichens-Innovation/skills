@@ -1,0 +1,131 @@
+/**
+ * TYPE SAFETY — TypeScript
+ * Rule: NEVER use `any`. Define precise interfaces and use union types.
+ */
+
+// ─────────────────────────────────────────────
+// INTERFACES vs `any`
+// ─────────────────────────────────────────────
+
+// ✅ GOOD — explicit shape
+interface Market {
+  id: string;
+  name: string;
+  description: string;
+  status: "active" | "resolved" | "closed";
+  createdAt: Date;
+  resolvedAt?: Date; // optional field
+}
+
+async function getMarket(id: string): Promise<Market> {
+  const data = await fetch(`/api/markets/${id}`).then((r) => r.json());
+  return data as Market; // validated by API contract
+}
+
+// ❌ BAD — `any` defeats the entire purpose of TypeScript
+async function getMarketBad(id: any): Promise<any> {
+  return fetch(`/api/markets/${id}`).then((r) => r.json());
+}
+
+// ─────────────────────────────────────────────
+// UNION TYPES — prefer over loose strings
+// ─────────────────────────────────────────────
+
+// ✅ GOOD
+type UserRole = "admin" | "moderator" | "user" | "guest";
+type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+type SortDirection = "asc" | "desc";
+
+function sortMarkets(markets: Market[], direction: SortDirection): Market[] {
+  return [...markets].sort((a, b) =>
+    direction === "asc"
+      ? a.name.localeCompare(b.name)
+      : b.name.localeCompare(a.name)
+  );
+}
+
+// ❌ BAD — no autocomplete, no safety
+function sortMarketsBad(markets: any[], direction: string): any[] {
+  return markets.sort((a, b) =>
+    direction === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+  );
+}
+
+// ─────────────────────────────────────────────
+// GENERICS — reusable typed utilities
+// ─────────────────────────────────────────────
+
+// ✅ GOOD — typed API response wrapper
+interface ApiResponse<T> {
+  success: boolean;
+  data?: T;
+  error?: string;
+  meta?: { total: number; page: number; limit: number };
+}
+
+async function apiFetch<T>(url: string): Promise<ApiResponse<T>> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      return { success: false, error: `HTTP ${response.status}` };
+    }
+    const data = await response.json() as T;
+    return { success: true, data };
+  } catch (error) {
+    return { success: false, error: String(error) };
+  }
+}
+
+// Usage — TypeScript infers the type
+const result = await apiFetch<Market[]>("/api/markets");
+if (result.success && result.data) {
+  result.data.forEach((market) => console.log(market.name)); // ✅ fully typed
+}
+
+// ─────────────────────────────────────────────
+// UNKNOWN vs ANY — for truly unknown inputs
+// ─────────────────────────────────────────────
+
+// ✅ GOOD — `unknown` forces you to check before use
+function parseConfig(input: unknown): Record<string, string> {
+  if (typeof input !== "object" || input === null) {
+    throw new Error("Config must be an object");
+  }
+  return input as Record<string, string>;
+}
+
+// ❌ BAD — `any` skips all checks
+function parseConfigBad(input: any) {
+  return input; // could be anything, TypeScript won't complain
+}
+
+// ─────────────────────────────────────────────
+// OPTIONAL CHAINING & NULLISH COALESCING
+// ─────────────────────────────────────────────
+// Rule: Prefer ?? (nullish coalescing) over || for null/undefined.
+// || treats 0, "", false as falsy and replaces them; ?? only replaces null and undefined.
+
+interface UserProfile {
+  id: string;
+  name: string;
+  address?: {
+    city?: string;
+    country?: string;
+  };
+}
+
+// ✅ GOOD — safe access; ?? for null/undefined default only
+function getUserCity(user: UserProfile): string {
+  return user.address?.city ?? "Unknown city";
+}
+const pageSize = config.pageSize ?? 10; // 0 would be kept with ??, replaced with ||
+const label = status?.description ?? "-";
+
+// ❌ BAD — || replaces 0, "", false too (often unintended)
+// const pageSize = config.pageSize || 10;   // 0 becomes 10
+// const label = status?.description || "-"; // "" becomes "-"
+
+// ❌ BAD — will throw if address is undefined
+function getUserCityBad(user: UserProfile): string {
+  return user.address!.city!; // non-null assertion = lying to TypeScript
+}
