@@ -8,12 +8,19 @@
 // OBJECTS
 // ─────────────────────────────────────────────
 
-interface User {
+type UserRole = "admin" | "user";
+
+interface UserSettings {
+  theme: string;
+  language: string;
+}
+
+type User = {
   id: string;
   name: string;
-  role: "admin" | "user";
-  settings: { theme: string; language: string };
-}
+  role: UserRole;
+  settings: UserSettings;
+};
 
 const user: User = {
   id: "1",
@@ -22,10 +29,10 @@ const user: User = {
   settings: { theme: "dark", language: "fr" },
 };
 
-// ✅ GOOD — spread operator creates a new object
+// ✅ GOOD — spread operator creates a new object (or use immer library)
 const updatedUser = { ...user, name: "Alice Smith" };
 
-// ✅ GOOD — nested update (always spread nested objects too)
+// ✅ GOOD — nested update (always spread nested objects too or use immer library)
 const updatedSettings = {
   ...user,
   settings: { ...user.settings, theme: "light" },
@@ -49,26 +56,26 @@ const withItemAtStart = ["mango", ...items];
 const withoutBanana = items.filter((item) => item !== "banana");
 
 // ✅ GOOD — updating an item by index
-const updatedItems = items.map((item, index) =>
-  index === 1 ? "BANANA" : item
-);
+const updatedItems = items.map((item, index) => (index === 1 ? "BANANA" : item));
 
 // ✅ GOOD — sorting (sort mutates! always copy first)
 const sorted = [...items].sort();
 
 // ❌ BAD — mutating array methods
-items.push("date");       // mutates
-items.splice(1, 1);       // mutates
-items.sort();             // mutates — sorts in place
+items.push("date"); // mutates
+items.splice(1, 1); // mutates
+items.sort(); // mutates — sorts in place
 
 // ─────────────────────────────────────────────
 // ARRAYS OF OBJECTS — common Redux/state pattern
 // ─────────────────────────────────────────────
 
+type MarketStatus = "active" | "closed";
+
 interface Market {
   id: string;
   name: string;
-  status: "active" | "closed";
+  status: MarketStatus;
 }
 
 const markets: Market[] = [
@@ -77,9 +84,7 @@ const markets: Market[] = [
 ];
 
 // ✅ GOOD — update one item in a list
-const updatedMarkets = markets.map((market) =>
-  market.id === "1" ? { ...market, status: "closed" } : market
-);
+const updatedMarkets = markets.map((market) => (market.id === "1" ? { ...market, status: "closed" } : market));
 
 // ✅ GOOD — remove one item from a list
 const filteredMarkets = markets.filter((market) => market.id !== "2");
