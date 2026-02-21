@@ -5,6 +5,7 @@ Lichens Innovation **Agent Skills** repository — reusable instructions to exte
 - [skills](#skills)
   - [Installation](#installation)
   - [Removing a skill](#removing-a-skill)
+  - [Frequent CLI commands](#frequent-cli-commands)
   - [How a skill becomes active (Cursor, Copilot, Claude Code)](#how-a-skill-becomes-active-cursor-copilot-claude-code)
   - [Popular skill repositories](#popular-skill-repositories)
 
@@ -48,6 +49,18 @@ npx skills remove hello-world --agent cursor --agent claude-code
 ```
 
 You can use the `rm` alias: `npx skills rm hello-world`. To see what is installed: `npx skills list`.
+
+## Frequent CLI commands
+
+| Task                                 | Command                                                           |
+| ------------------------------------ | ----------------------------------------------------------------- |
+| Check for updates                    | `npx skills check`                                                |
+| Update all skills                    | `npx skills update`                                               |
+| Generate lock file                   | `npx skills generate-lock`                                        |
+| Generate lock file (dry run)         | `npx skills generate-lock --dry-run`                              |
+| Discover skills                      | `npx skills find react`                                           |
+| Install a specific skill from a repo | `npx skills add vercel-labs/agent-skills --skill frontend-design` |
+| Create a new skill                   | `npx skills init my-custom-skill`                                 |
 
 ## How a skill becomes active (Cursor, Copilot, Claude Code)
 
