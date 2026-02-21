@@ -1,6 +1,6 @@
 # skills
 
-Lichens Innovation **Agent Skills** repository — reusable instructions to extend coding agents (Cursor, GitHub Copilot, Claude Code, etc.). Agent Skills started as an open standard from Anthropic (2025); Cursor and GitHub Copilot adopted it shortly after. For the full timeline and how the ecosystem evolved, see [SKILLS-HISTORY.md](./SKILLS-HISTORY.md).
+Lichens Innovation **Agent Skills** repository — reusable instructions to extend coding agents (Cursor, GitHub Copilot, Claude Code, etc.). Agent Skills started as an open standard from Anthropic (2025); Cursor and GitHub Copilot adopted it shortly after. For the full timeline and how the ecosystem evolved, see [skills history](./SKILLS-HISTORY.md).
 
 - [skills](#skills)
   - [Installation](#installation)
@@ -88,13 +88,13 @@ In short: **install** → **files in the right place** → **the agent reads and
 
 Two built-in skills help you create skills from scratch. Summary:
 
-| Criterion | **skill-creator** | **create-skill** |
-|--------|--------------------|-------------------|
-| Target | Skills for agent (Claude) in general | Cursor-only skills |
-| Tooling | `init_skill.py`, `package_skill.py`, `.skill` file | No scripts, manual creation |
-| Process | 6 steps (including init + package) | 4 phases (Discovery → Verify) |
-| Resources | scripts / references / assets clearly defined | scripts/ and optional files (reference.md, examples.md) |
-| Packaging | Yes → distributable `.skill` file | No, skills created in place |
+| Criterion      | **skill-creator**                                        | **create-skill**                                         |
+| -------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| Target         | Skills for agent (Claude) in general                     | Cursor-only skills                                       |
+| Tooling        | `init_skill.py`, `package_skill.py`, `.skill` file       | No scripts, manual creation                              |
+| Process        | 6 steps (including init + package)                       | 4 phases (Discovery → Verify)                            |
+| Resources      | scripts / references / assets clearly defined            | scripts/ and optional files (reference.md, examples.md)  |
+| Packaging      | Yes → distributable `.skill` file                        | No, skills created in place                              |
 | Best practices | Structure, progressive disclosure, "what not to include" | Descriptions, anti-patterns, writing patterns, checklist |
 
 ## Popular skill repositories
@@ -107,8 +107,8 @@ Other well-known places to discover and install agent skills:
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)                       | Official Vercel collection (React, Next.js, web design, PR descriptions, etc.). Install: `npx skills add vercel-labs/agent-skills` |
 | [anthropics/skills](https://github.com/anthropics/skills)                                     | Anthropic’s public Agent Skills repo — creative, technical, and document skills for Claude.                                        |
 | [github/awesome-copilot — skills](https://github.com/github/awesome-copilot/tree/main/skills) | Curated skills in the Awesome Copilot repo (GitHub Copilot).                                                                       |
-| [claude-plugins.dev](https://claude-plugins.dev/)                                             | Plugin/skill registry with CLI installation.                                                                                        |
-| [SkillsMP](https://www.skillsmp.com/)                                                         | Skills marketplace (Claude, Codex, ChatGPT, etc.).                                                                                  |
+| [claude-plugins.dev](https://claude-plugins.dev/)                                             | Plugin/skill registry with CLI installation.                                                                                       |
+| [SkillsMP](https://www.skillsmp.com/)                                                         | Skills marketplace (Claude, Codex, ChatGPT, etc.).                                                                                 |
 
 To list skills in any repo without installing: `npx skills add owner/repo --list`.
 
