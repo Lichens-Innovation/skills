@@ -40,9 +40,31 @@ After reading this skill:
 | --------------------- | ---------------------------------------------------------- |
 | **Readability First** | Code is read more than written. Clear names > clever code. |
 | **KISS**              | Simplest solution that works. Avoid over-engineering.      |
+| **Avoid GodComponent**| Single responsibility per component; extract utilities, hooks, sub-components. |
 | **DRY**               | Extract common logic. Create reusable components.          |
 | **YAGNI**             | Don't build features before they're needed.                |
 | **Immutability**      | Never mutate — always return new values.                   |
+
+---
+
+## Avoiding GodComponent (decomposition strategy)
+
+Apply the following order to keep components focused and testable:
+
+1. **Extract pure TypeScript utilities first**
+   - Move logic that has no React dependency into pure functions.
+   - If a utility takes **more than one argument**, use **object destructuring** in the signature so argument names are explicit at the call site. Extract the parameter type (e.g. `interface FormatRangeArgs { start: number; end: number }` then `const formatRange = ({ start, end }: FormatRangeArgs) => ...`).
+   - **Reusable** across features → put in `src/utils/xyz.utils.ts`.
+   - **Feature-specific** → keep next to the component as `component-name.utils.ts` (same kebab-case base name as the component file, e.g. `market-list-item.utils.ts` next to `market-list-item.tsx`).
+
+2. **Extract logic into named hooks**
+   - Move state, effects, and derived logic into hooks (e.g. `use-xyz.ts`).
+   - **Reusable** across features → put in `src/hooks/use-xyz.ts`.
+   - **Feature-specific** → keep in the feature’s `hooks/` subdirectory (e.g. `features/market-list/hooks/use-market-filters.ts`).
+
+3. **Split the visual layer into sub-components**
+   - If the **render/JSX** exceeds roughly **40 lines**, extract sub-components with clear props and a single responsibility.
+   - Each sub-component should have its own props interface and live in its own file (or a dedicated subfolder) when it grows.
 
 ---
 
@@ -141,8 +163,8 @@ Components and hooks are still **exported** with PascalCase (components) or came
 
 ## Architecture & Organisation
 
-- **Feature structure** — each feature should be self-contained: its own components, `hooks/` subdirectory, `*.utils.ts` and `*.types.ts` files, and Controllers/Services for complex business logic (e.g. `features/3D/`, `scene-manager/controllers/`).
-- **Single responsibility** — one clear responsibility per file; keep components small and focused.
+- **Feature structure** — each feature should be self-contained: its own components, `hooks/` subdirectory, `*.utils.ts` and `*.types.ts` files, and Controllers/Services for complex business logic (e.g. `features/scene-3d/`, `scene-manager/controllers/`).
+- **Single responsibility** — one clear responsibility per file; keep components small and focused. Apply the [Avoiding GodComponent (decomposition strategy)](#avoiding-godcomponent-decomposition-strategy): utilities first, then hooks, then sub-components when the visual layer exceeds ~40 lines.
 - **Composition over inheritance** — prefer composing small components and utilities over class inheritance.
 - **Group related code** — keep related functionality together (e.g. by feature or domain).
 
