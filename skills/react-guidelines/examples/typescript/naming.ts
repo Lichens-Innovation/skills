@@ -46,10 +46,10 @@ interface PaginatedListResponse<T> {
 const EMPTY_PAGINATED_RESPONSE: PaginatedListResponse<Engine> = { rows: [] };
 
 // ─────────────────────────────────────────────
-// FILES — kebab-case, optional domain suffix
+// FILES — kebab-case only (lowercase + hyphens), optional domain suffix
 // ─────────────────────────────────────────────
 
-// ✅ GOOD — kebab-case; .types.ts, .utils.ts, .constants.ts, .store.ts for domain files
+// ✅ GOOD — file names always kebab-case; .types.ts, .utils.ts, .constants.ts, .store.ts for domain files
 // pump-info-card.tsx
 // use-test-engines-list.ts
 // app.types.ts
@@ -57,7 +57,7 @@ const EMPTY_PAGINATED_RESPONSE: PaginatedListResponse<Engine> = { rows: [] };
 // logger.utils.ts
 // app.constants.ts
 
-// ❌ BAD (not kebab-case)
+// ❌ BAD — file names not in kebab-case (should be pump-info-card.tsx, use-test-engines-list.ts, app.types.ts)
 // PumpInfoCard.tsx
 // useTestEnginesList.ts
 // AppTypes.ts

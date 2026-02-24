@@ -41,6 +41,13 @@ export const ButtonBad: FunctionComponent<any> = (props) => (
   <button onClick={props.onClick}>{props.children}</button>
 );
 
+// ❌ BAD — not using arrow function and not using destructuring for arguments
+export function ButtonBadFunction(props: ButtonProps) {
+  return (
+    <button onClick={props.onClick}>{props.children}</button>
+  );
+}
+
 // ─────────────────────────────────────────────
 // CONDITIONAL RENDERING — clear patterns
 // ─────────────────────────────────────────────
@@ -70,7 +77,7 @@ export const DataDisplay: FunctionComponent<DataDisplayProps> = ({
   );
 };
 
-// ❌ BAD — ternary hell, unreadable
+// ❌ BAD — ternary hell, unreadable (multiple nested ternary operators)
 export const DataDisplayBad: FunctionComponent<DataDisplayProps> = ({
   isLoading,
   error,
@@ -154,13 +161,13 @@ export const MarketCard: FunctionComponent<MarketCardProps> = ({
 // COMPONENT SIZE RULE
 // ─────────────────────────────────────────────
 
-// ✅ GOOD — if a component grows beyond ~150 lines, extract sub-components
+// ✅ GOOD — if a component grows beyond ~100 lines, extract sub-components
 
 // Large component → split into:
-// MarketList.tsx        (list container + fetching logic)
-// MarketListItem.tsx    (single row rendering)
-// MarketListFilters.tsx (filter controls)
-// useMarketList.ts      (custom hook for data logic)
+// market-list.tsx        (list container + fetching logic)
+// market-list-item.tsx    (single row rendering)
+// market-list-filters.tsx (filter controls)
+// use-market-list.ts      (custom hook for data logic)
 
 // Stubs
 const fetchMarket = async (id: string): Promise<Market> =>

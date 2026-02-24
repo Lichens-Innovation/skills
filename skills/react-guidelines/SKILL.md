@@ -96,13 +96,17 @@ After reading this skill:
 - **200–400 lines** typical file length
 - **800 lines** absolute maximum
 - One responsibility per file (high cohesion, low coupling)
+- **File names: always kebab-case** (lowercase with hyphens). No PascalCase or camelCase in file or folder names.
 
 ```
-components/Button.tsx          # PascalCase for components
-hooks/useAuth.ts               # camelCase with 'use' prefix
-lib/formatDate.ts              # camelCase for utilities
-types/market.types.ts          # camelCase with .types suffix
+components/button.tsx           # kebab-case (not Button.tsx)
+hooks/use-auth.ts               # kebab-case (not useAuth.ts)
+lib/format-date.ts              # kebab-case (not formatDate.ts)
+types/market.types.ts           # kebab-case + optional .types / .utils / .store suffix
+features/market-list/market-list-item.tsx
 ```
+
+Components and hooks are still **exported** with PascalCase (components) or camelCase with `use` prefix (hooks); only the **file name** is kebab-case.
 
 ---
 
@@ -119,3 +123,4 @@ Before returning any code, verify each point:
 - [ ] No deep nesting (>4 levels) → refactor with early returns
 - [ ] No `console.log` left in production code
 - [ ] File stays **under 800 lines** → split if needed
+- [ ] New file names are **kebab-case** (e.g. `market-list-item.tsx`, `use-auth.ts`) → rename if not

@@ -49,7 +49,7 @@ const sortMarkets = ({ markets, direction }: SortMarketsArgs): Market[] => {
   return [...markets].sort((a, b) => b.name.localeCompare(a.name));
 };
 
-// ❌ BAD — no autocomplete, no safety, note using early returns to avoid many nested if statements
+// ❌ BAD — no autocomplete, no safety, not using early returns
 const sortMarketsBad = (markets: any[], direction: string): any[] =>
   markets.sort((a, b) => (direction === "asc" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)));
 

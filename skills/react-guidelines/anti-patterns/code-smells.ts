@@ -134,7 +134,7 @@ function transferFundsClean(from: AccountId, to: AccountId, amount: USD) {}
 // Fix: Co-locate related logic; reduce coupling
 // ─────────────────────────────────────────────
 
-// ❌ SMELL — "market status" logic scattered across:
+// ❌ SMELL — "market status" logic scattered across (file names should be kebab-case, e.g. market-card.tsx, format-market.ts):
 // components/MarketCard.tsx     → renders status badge
 // utils/formatMarket.ts         → formats status string
 // hooks/useMarkets.ts           → filters by status
