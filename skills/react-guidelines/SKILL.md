@@ -59,28 +59,19 @@ After reading this skill:
 
 ### TypeScript / JavaScript
 
-| Topic                      | Example File                            | When to load                           |
-| -------------------------- | --------------------------------------- | -------------------------------------- |
-| Variable & function naming | `examples/typescript/naming.ts`         | When naming anything (arrow functions only) |
-| Immutability patterns      | `examples/typescript/immutability.ts`   | When working with state/objects/arrays |
-| Error handling             | `examples/typescript/error-handling.ts` | When writing async code                |
-| Async / Promise patterns   | `examples/typescript/async-patterns.ts` | When using await/Promise               |
+| Topic                      | Example File                            | When to load                                                                           |
+| -------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------- |
+| Variable & function naming | `examples/typescript/naming.ts`         | When naming anything (arrow functions only)                                            |
+| Immutability patterns      | `examples/typescript/immutability.ts`   | When working with state/objects/arrays                                                 |
+| Error handling             | `examples/typescript/error-handling.ts` | When writing async code                                                                |
+| Async / Promise patterns   | `examples/typescript/async-patterns.ts` | When using await/Promise                                                               |
 | Type safety                | `examples/typescript/type-safety.ts`    | When defining interfaces/types (no inline types; no nested types; extract named types) |
 
 ### React
 
-| Topic               | Example File                             | When to load                   |
-| ------------------- | ---------------------------------------- | ------------------------------ |
-| Component structure | `examples/react/component-structure.tsx` | When creating a component      |
-| Custom hooks        | `examples/react/custom-hooks.tsx`        | When extracting reusable logic |
-| State management    | `examples/react/state-management.tsx`    | When using useState/useReducer |
-
-### API Design
-
-| Topic            | Example File                       | When to load                   |
-| ---------------- | ---------------------------------- | ------------------------------ |
-| Response format  | `examples/api/response-format.ts`  | When writing API handlers      |
-| Input validation | `examples/api/input-validation.ts` | When validating request bodies |
+| Topic               | Example File                             | When to load              |
+| ------------------- | ---------------------------------------- | ------------------------- |
+| Component structure | `examples/react/component-structure.tsx` | When creating a component |
 
 ### Anti-patterns (read during code review)
 

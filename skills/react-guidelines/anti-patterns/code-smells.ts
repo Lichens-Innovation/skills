@@ -20,14 +20,14 @@ const processOrderBad = async (orderId: string) => {
 };
 
 // ✅ REFACTORED — each step is named and testable
-async function processOrder(orderId: string) {
+const processOrder = async (orderId: string) => {
   const order = await validateAndFetchOrder(orderId);
   await checkInventoryAvailability(order);
   const payment = await chargePayment(order);
   await persistOrderCompletion(order, payment);
   await sendOrderConfirmation(order);
   return { success: true, orderId };
-}
+};
 
 // ─────────────────────────────────────────────
 // SMELL 2: LONG PARAMETER LIST (>3 params)
@@ -55,7 +55,7 @@ interface CreateUserParams {
   sendWelcomeEmail?: boolean;  // optional with default
 }
 
-function createUserClean({ name, email, role, teamId, isVerified = false, sendWelcomeEmail = true }: CreateUserParams) {}
+const createUserClean = ({ name, email, role, teamId, isVerified = false, sendWelcomeEmail = true }: CreateUserParams) => {};
 
 // ─────────────────────────────────────────────
 // SMELL 3: BOOLEAN FLAG PARAMETER
@@ -126,7 +126,7 @@ type UserId = string & { readonly _brand: "UserId" };
 type AccountId = string & { readonly _brand: "AccountId" };
 type USD = number & { readonly _brand: "USD" };
 
-function transferFundsClean(from: AccountId, to: AccountId, amount: USD) {}
+const transferFundsClean = (from: AccountId, to: AccountId, amount: USD) => {};
 
 // ─────────────────────────────────────────────
 // SMELL 6: SHOTGUN SURGERY
@@ -164,10 +164,11 @@ count = count + 1;
 // Check if user can edit
 const check = (u: any): boolean => u.role === "admin";
 
-// ✅ GOOD — name is self-explanatory, comment explains why
-function canEditMarket(user: { role: string }): boolean {
-  return user.role === "admin";
+// ✅ GOOD — name is self-explanatory, comment explains why; type defined explicitly
+interface CanEditMarketArgs {
+  role: string;
 }
+const canEditMarket = (user: CanEditMarketArgs): boolean => user.role === "admin";
 
 // ✅ GOOD — comment explains non-obvious decision (the WHY); duration self-explanatory via PeriodsInMS
 // We use 1.5s instead of 1s because the upstream API
