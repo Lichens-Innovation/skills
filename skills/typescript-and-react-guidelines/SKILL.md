@@ -150,7 +150,7 @@ Components and hooks are still **exported** with PascalCase (components) or came
 ### Data fetching (async: loading, error, data)
 
 - **Prefer TanStack Query** — for any async call that involves `isLoading`, error handling, and result data, use `useQuery` (or `useMutation` for writes) instead of manual `useState` + `useEffect`. You get caching, deduplication, and consistent loading/error state for free.
-- **Query key factory** — define a single source of truth for cache keys (e.g. `XxxQueryKey.all`, `XxxQueryKey.list(...)`, `XxxQueryKey.detail(id)`). See [references/query-keys-example.ts](references/query-keys-example.ts) and [assets/hook-tanstack-query-template.ts](assets/hook-tanstack-query-template.ts).
+- **Query key factory** — define a single source of truth for cache keys (e.g. `XxxQueryKey.all`, `XxxQueryKey.list(...)`, `XxxQueryKey.detail(id)`). See [examples/react/query-keys-example.ts](examples/react/query-keys-example.ts) and [assets/hook-tanstack-query-template.ts](assets/hook-tanstack-query-template.ts).
 
 ---
 
