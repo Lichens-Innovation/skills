@@ -1,6 +1,8 @@
 ---
 name: react-coding-standards
-description: Enforces internal React and TypeScript coding standards using avoid/prefer rules. Use when reviewing or refactoring React/TS code, applying company standards, or when the user asks to align code with coding standards. Keywords: avoid, prefer, React, TypeScript, naming, patterns, tests, lint.
+description: "Enforces internal React and TypeScript coding standards using avoid/prefer rules. Use when reviewing or refactoring React/TS code, applying company standards, or when the user asks to align code with coding standards."
+metadata:
+  keywords: "avoid, prefer, React, TypeScript, naming, patterns, tests, lint"
 ---
 
 # React & TypeScript coding standards
