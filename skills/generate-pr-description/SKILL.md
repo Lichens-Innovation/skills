@@ -7,6 +7,8 @@ description: Generate pull request descriptions by comparing current branch with
 
 Generate a concise pull request description by analyzing git changes and using the project's PR template.
 
+**Language:** Always generate PR titles and descriptions in **English**, regardless of the user's language or the language of commit messages.
+
 ## Workflow
 
 1. **Identify parent branch**
