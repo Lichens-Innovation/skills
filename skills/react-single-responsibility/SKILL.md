@@ -38,7 +38,7 @@ Rules that apply when reducing complexity of a **React component**.
 
 Apply in this order:
 
-1. **Extract pure utilities first** — Logic with no React dependency → pure functions. More than one argument → object destructuring + extracted parameter type. Reusable → `src/utils/xyz.utils.ts`; feature-specific → `component-name.utils.ts` next to the component.
+1. **Extract pure utilities first** — Logic with no React dependency → pure functions. More than one argument → object destructuring and an extracted parameter interface. Reusable → `src/utils/xyz.utils.ts`; feature-specific → `component-name.utils.ts` next to the component.
 
 2. **Extract logic into hooks** — State, effects, derived logic → hooks (`use-xyz.ts`). Reusable → `src/hooks/`; feature-specific → feature's `hooks/` subdirectory. Prefer a **plain arrow function** over a custom hook when you don't need React primitives.
 
@@ -141,7 +141,7 @@ Rules that apply when reducing complexity of a **function or method** (non-compo
 
 - [ ] Can I understand this in ~30 seconds? → if no: too complex; split or rename.
 - [ ] Does it do more than one thing? → if yes: extract pure utilities, hooks, or sub-components (component) or smaller named functions (method).
-- [ ] Long parameter lists or boolean flags? → use options object or separate functions.
+- [ ] More than 2 parameters? → use a single options object, an extracted parameter interface above the signature, and destructuring.
 - [ ] Copy-pasted code? → extract and parameterize.
 - [ ] Control flow deeply nested? → use early returns and intermediate variables.
 - [ ] Comments explaining _what_? → rename for self-documenting code; keep comments for _why_ only.
