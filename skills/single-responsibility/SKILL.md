@@ -47,7 +47,7 @@ Apply in this order:
 ### Structure and readability
 
 - **Order inside the component:** types → state → effects → handlers → render.
-- **Handlers:** one arrow function per handler (e.g. `const handleClick = () => { ... }`); avoid factories that return handlers.
+- **Handlers:** one arrow function per handler (e.g. `const handleClick = () => { ... }`); avoid factories that return handlers. If an arrow function handler is only depending on pure typescript it can be externalized into `component-name.utils.ts` next to the component.
 - **Early returns in render** — Keep the main path flat: `if (isLoading) return <Spinner />; if (error) return <ErrorMessage />; ...` One condition per line; avoid nested ternary operators (“ternary hell”).
 - **Boolean in JSX** — Use explicit boolean (e.g. `const hasItems = items.length > 0; { hasItems && <List /> }`) so `0` is not rendered.
 - **Static data** — Constants and pure functions that don't depend on props or state → **outside the component** (relocate into `component-name.utils.ts` or `component-name.types.ts`) to avoid new references every render.
