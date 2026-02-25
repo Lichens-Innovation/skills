@@ -35,14 +35,19 @@ Generate a concise pull request description by analyzing git changes and using t
 4. **Load PR template**
    - Check for `.github/pull_request_template.md` first
    - If not found, check `.gitlab/merge_request_template.md`
+   - If still not found, use the template in this skill: `templates/pull_request_template.md` (relative to the skill directory)
    - Read the template file
 
 5. **Fill template concisely**
-   - Extract key changes from git diff and commits
-   - Fill "Changes Description" section with bullet points
+   - Before filling the template, group all changes by theme/area (e.g. auth, API, UI, tests, docs)
+   - Do not repeat the same subject: one entry per theme, even if multiple files or commits touch it
+   - Extract key changes from git diff and commits, already grouped by theme as above
+   - Fill "Changes Description" with one bullet per theme/area; use sub-bullets only when a theme has distinct sub-changes
    - Keep each bullet point brief (one line when possible)
    - Use emojis sparingly (🚧 for WIP, ✅ for done, etc.)
-   - Mark checklist items appropriately
+   - Mark checklist items appropriately:
+     - **Documentation:** check the box if the PR introduces documentation (JSDoc in changed files, or markdown files `.md` detected in the diff).
+     - **Tests:** check the box if the PR adds or updates unit tests (test files detected in the diff, e.g. `*.test.*`, `*.spec.*`, or paths under `test/` / `__tests__/`).
    - Leave "Related Issue(s)" and "Screen capture(s)" as 🚫 if not applicable
 
 6. **Enforce 600 character limit**
@@ -64,8 +69,10 @@ Provide ready-to-copy markdown in this format:
 
 ## PR Description
 
-<filled-template-markdown>
+<filled-template-markdown including Summary then grouped Changes Description>
 ```
+
+**Grouping rule:** Never list the same subject twice. If several commits or files relate to the same theme (e.g. "auth", "tests", "docs"), merge them into a single bullet in the summary and in Changes Description.
 
 ## Example
 
@@ -84,30 +91,24 @@ feat(auth): implement user authentication
 
 ## PR Description
 
+## Summary
+
+- Authentication: login component and auth service.
+- Tests: auth-related tests added.
+
 ## Changes Description
 
-- Add login component with form validation
-- Update auth service with JWT token handling
-- Add unit tests for authentication flow
+- **Auth:** login component, auth service updates.
+- **Tests:** auth tests added.
 
 ## Checklist
 
-- [x] code follows project guidelines.
-- [x] tests have been added or updated (if applicable).
-- [ ] documentation has been updated (if applicable).
-
-## Related Issue(s)
-
-- 🚫
-
-## Screen capture(s)
-
-- 🚫
+(other checklist items...)
 ```
 
 ## Character Count Tips
 
 - Use abbreviations when appropriate (e.g., "auth" instead of "authentication")
-- Combine related changes into single bullet points
+- Combine related changes into single bullet points (grouping avoids repetition)
 - Remove template placeholders if not needed
-- Prioritize "Changes Description" over other sections
+- Prioritize Summary and "Changes Description" over other sections
