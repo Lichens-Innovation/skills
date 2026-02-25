@@ -110,6 +110,7 @@ Rules that apply when reducing complexity of a **function or method** (non-compo
 ### Parameters
 
 - **Long parameter list (>1 param)** — Use a single **params object** with destructuring; extract type (e.g. `interface CreateUserArgs`). Avoids wrong order and unclear meaning at the call site. The interface name matches the method name but starts with a capital letter and ends with `Args` (e.g. for `getThisMethod`, use `interface GetThisMethodArgs`).
+- **Interface used only for one method** — When an interface exists solely to type a single method’s signature, **place it immediately above that method** (colocation). This self-documents the signature that follows and keeps the type next to its only consumer.
 - **Boolean flag parameter** — Avoid `fn(data, true)`. Use an **options object** with a named flag (e.g. `{ userId, includeArchived }: CreateUserArgs`) or **separate functions** when behavior diverges.
 - **Conventions** — Destructuring for multiple params; extract parameters into named interfaces; optional as `param?: Type`; defaults in destructuring (e.g. `{ page = 1, size = 10 }`).
 
