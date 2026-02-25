@@ -52,9 +52,20 @@ Generate a concise pull request description by analyzing git changes and using t
    - Mark checklist items appropriately:
      - **Documentation:** check the box if the PR introduces documentation (JSDoc in changed files, or markdown files `.md` detected in the diff).
      - **Tests:** check the box if the PR adds or updates unit tests. Detect test changes using common conventions: file names matching `*.test.*` or `*.spec.*`, or paths under `test/`, `__tests__/`, `tests/`, or similar directories used by mainstream test runners (do not assume a specific framework such as Jest or Vitest).
-   - Leave "Related Issue(s)" and "Screen capture(s)" as 🚫 if not applicable
+   - **Related Issue(s)** – see step 6 below. Leave "Screen capture(s)" as 🚫 if not applicable
 
-6. **Enforce 600 character limit**
+6. **Related tickets (interactive)**
+   - **Ask the user:** “Ticket IDs for this PR (comma-separated, e.g. `PROJ-123, PROJ-456`). Leave empty if none.”
+   - If the user provides one or more IDs:
+     - **Tasks manager base URL:** Run from the **project root** (repo where the PR is created): `node <skill-dir>/scripts/tasks-system.mjs`. The script loads `skills-configs.json` at project root (creates it if missing), prompts for any missing known keys, and outputs the full config as JSON (key/value). Use `configs.tasksManagerSystemBaseUrl` for the base URL of ticket links.
+     - For each ticket ID (trimmed), build the link: `{baseUrl}/{ID}`
+     - **Description:** If you can get the issue summary (e.g. API or user pastes descriptions), use it as the link text; otherwise use the ticket ID.
+     - Fill "Related Issue(s)" with a markdown list, one line per ticket:
+       - `- [Description or ID]({baseUrl}/{ID})`
+       - Example: `- [Add login screen](https://company.atlassian.net/browse/PROJ-123)` or `- [PROJ-123](https://company.atlassian.net/browse/PROJ-123)`
+   - If the user leaves the list empty or says “none”, keep "Related Issue(s)" as `- 🚫`.
+
+7. **Enforce 600 character limit**
    - Count total characters including markdown syntax
    - If over limit, prioritize:
      1. Keep the title

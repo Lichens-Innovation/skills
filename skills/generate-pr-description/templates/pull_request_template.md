@@ -11,6 +11,7 @@
 
 ## Related Issue(s)
 
+<!-- Fill from interactive prompt: comma-separated Jira IDs → list as - [Description](https://…/browse/KEY-123) or - [KEY-123](url) -->
 - 🚫
 
 ## Screen capture(s)
