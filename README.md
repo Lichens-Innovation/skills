@@ -73,8 +73,8 @@ You can use the `rm` alias: `npx skills rm hello-world`. To see what is installe
 You can validate that a skill’s `SKILL.md` frontmatter and structure follow the [Agent Skills specification](https://agentskills.io/specification) using [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref). From the root of this repository:
 
 ```bash
-# Validate a specific skill (e.g. typescript-and-react-guidelines)
-skills-ref validate ./skills/typescript-and-react-guidelines
+# Validate a specific skill (e.g. react-ts-guidelines)
+skills-ref validate ./skills/react-ts-guidelines
 
 # Validate all skills in the repo (if you have multiple skills)
 skills-ref validate ./skills

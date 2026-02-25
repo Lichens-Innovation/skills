@@ -1,5 +1,5 @@
 ---
-name: typescript-and-react-guidelines
+name: react-ts-guidelines
 description: |
   TypeScript, React, and Node.js coding standards: naming, types, hooks, components, error handling,
   refactoring, code review. Use when creating/editing TS/JS/React files, naming variables or
@@ -241,5 +241,5 @@ Skeletons to copy and adapt (file names in kebab-case):
 Validate this skill's frontmatter and structure with [skills-ref](https://github.com/agentskills/agentskills/tree/main/skills-ref):
 
 ```bash
-skills-ref validate ./skills/typescript-and-react-guidelines
+skills-ref validate ./skills/react-ts-guidelines
 ```

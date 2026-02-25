@@ -1,5 +1,5 @@
 ---
-name: single-responsibility
+name: react-single-responsibility
 description: |
   Strategies to simplify components, hooks, and methods: decomposition order (utilities, hooks, sub-components),
   early returns, control flow, parameter design, and code smell fixes. Use when refactoring a large
@@ -8,7 +8,7 @@ description: |
 metadata:
   version: "1.0.0"
   last-updated: "2026-02-25"
-  source: "Extracted from typescript-and-react-guidelines"
+  source: "Extracted from react-ts-guidelines"
 allowed-tools: Read, Write, Edit, Grep, Glob
 ---
 
