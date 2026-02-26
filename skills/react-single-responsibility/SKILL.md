@@ -45,7 +45,7 @@ Apply in this order:
 
 3. **Extract logic into hooks** — State, effects, derived logic → hooks (`use-xyz.ts`). Reusable → `src/hooks/`; feature-specific → feature's `hooks/` subdirectory. Prefer a **plain arrow function** over a custom hook when you don't need React primitives.
 
-4. **Split the visual layer into sub-components** — If render/TSX exceeds roughly **40 lines**, extract sub-components with clear props and a single responsibility. **Avoid internal `renderXyz()` methods**: turn each into a **regular component** (own file, own props). Each sub-component **must live in its own file**; use **parent file name as prefix**: `parent-name-<sub-component-name>.tsx` (e.g. `market-list-item.tsx`, `market-list-filters.tsx` for parent `market-list.tsx`). Large component (~100+ lines) → split into list container, list item, filters, pure functions and hook(s) as necessary for data logic.
+4. **Split the visual layer into sub-components** — If render/TSX exceeds roughly **40 lines**, extract sub-components with clear props and a single responsibility. **Avoid internal `renderXyz()` methods**: turn each into a **regular component** (own file, own props). Each sub-component **must live in its own file**; use **parent file name as prefix**: `parent-name-<sub-component-name>.tsx` (e.g. `market-list-item.tsx`, `market-list-filters.tsx` for parent `market-list.tsx`). Large component (~150+ lines) → split into list container, list item, filters, pure functions and hook(s) as necessary for data logic.
 
 ### Structure and readability
 
@@ -138,7 +138,7 @@ Rules that apply when reducing complexity of a **function or method** (non-compo
 
 ### File and size guidelines
 
-- **`*.tsx` (components)** — Must not exceed **100 lines**. Beyond that, the file is considered complex and requires decomposition (extract utilities, sub-components or hooks).
+- **`*.tsx` (components)** — Must not exceed **150 lines**. Beyond that, the file is considered complex and requires decomposition (extract utilities, sub-components or hooks).
 - **`*.ts` (pure TypeScript)** — **200–400 lines** typical per file; **2000 lines** absolute maximum.
 - File names: **kebab-case**. Examples: `market-list-item.tsx`, `use-market-filters.ts`, `<name>.utils.ts`, (e.g. `market-list.utils.ts`).
 
