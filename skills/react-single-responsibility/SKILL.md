@@ -31,7 +31,7 @@ Apply these strategies to keep components, hooks, and methods focused, testable,
 
 ---
 
-## Simplifying a component
+## Simplifying a component (filename pattern \*.tsx)
 
 Rules that apply when reducing complexity of a **React component**.
 
@@ -64,7 +64,7 @@ Apply in this order:
 
 ---
 
-## Simplifying a hook
+## Simplifying a hook (filename pattern use\*.ts)
 
 Rules that apply when reducing complexity of a **custom React hook**. Apply single responsibility by extracting pure logic into utilities and splitting broad hooks into smaller, focused ones.
 
@@ -96,7 +96,7 @@ Rules that apply when reducing complexity of a **custom React hook**. Apply sing
 
 ---
 
-## Simplifying a method
+## Simplifying a method (filename pattern \*.ts)
 
 Rules that apply when reducing complexity of a **function or method** (non-component).
 
