@@ -24,22 +24,6 @@ This rule applies to a **React and TypeScript** project. The coding standards an
 
 ---
 
-## Step 0 — Resolve scope
-
-Before touching any file, identify exactly what to normalize.
-
-| Scope type       | How to resolve                                                                       |
-| ---------------- | ------------------------------------------------------------------------------------ |
-| Selected files   | Use the files listed or passed as context                                            |
-| Git staged       | `git diff --cached --name-only`                                                      |
-| Branch           | `git diff main...<branch> --name-only` (replace `main` with default branch)          |
-| Selected lines   | Apply changes **only within** the specified line range; leave surroundings untouched |
-| Directory / glob | Resolve all matching files with `Glob`                                               |
-
-> If the scope is ambiguous, ask the user to clarify before proceeding.
-
----
-
 ## Workflow
 
 Repeat the **3-step cycle** until the re-validation in Step 3 finds zero violations.
@@ -54,7 +38,7 @@ Repeat the **3-step cycle** until the re-validation in Step 3 finds zero violati
 └─────────────────────────────────────────────────┘
 ```
 
-> **Max iterations:** 3. If violations still exist after 2 full cycles, report the remaining issues to the user and stop.
+> **Max iterations:** 2. If violations still exist after 2 full cycles, report the remaining issues to the user and stop.
 
 ---
 
@@ -172,4 +156,4 @@ After the final iteration, produce a summary:
 - **File/folder renames first** in every Step 1 Phase 2, before any in-file edits.
 - **Minimal edits** — one Avoid → one Prefer; do not bundle unrelated changes.
 - **Selected lines scope** — restrict all edits strictly to the specified line range.
-- **Stop at 3 iterations** — report remaining violations rather than looping forever.
+- **Stop at 2 iterations** — report remaining violations rather than looping forever.
