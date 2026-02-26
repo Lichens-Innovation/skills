@@ -1,0 +1,169 @@
+---
+name: react-normalize-code
+description: |
+  Agent invoked when the user says "normalize this code", "normalize", or similar.
+  Applies company coding standards then simplifies code using single-responsibility principles,
+  iterating until the code is stable and fully compliant.
+  Accepts any scope: selected files, git staged files, a branch, selected lines, a directory, or a glob.
+allowed-tools: Read, Write, Edit, Grep, Glob, Bash
+---
+
+# Normalize Code — Agent
+
+## Trigger phrases
+
+- "normalize this code"
+- "normalize"
+- "normalize [files / branch / staged / selection]"
+
+---
+
+## Step 0 — Resolve scope
+
+Before touching any file, identify exactly what to normalize.
+
+| Scope type       | How to resolve                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| Selected files   | Use the files listed or passed as context                                            |
+| Git staged       | `git diff --cached --name-only`                                                      |
+| Branch           | `git diff main...<branch> --name-only` (replace `main` with default branch)          |
+| Selected lines   | Apply changes **only within** the specified line range; leave surroundings untouched |
+| Directory / glob | Resolve all matching files with `Glob`                                               |
+
+> If the scope is ambiguous, ask the user to clarify before proceeding.
+
+---
+
+## Workflow
+
+Repeat the **3-step cycle** until the re-validation in Step 3 finds zero violations.
+
+```
+┌─────────────────────────────────────────────────┐
+│  Step 1 — Apply coding standards                │
+│  Step 2 — Simplify (single responsibility)      │
+│  Step 3 — Re-validate coding standards          │
+│    └─ violations found? → back to Step 1        │
+│    └─ no violations?    → DONE ✓                │
+└─────────────────────────────────────────────────┘
+```
+
+> **Max iterations:** 3. If violations still exist after 2 full cycles, report the remaining issues to the user and stop.
+
+---
+
+### Step 1 — Apply coding standards
+
+> Skill: `react-coding-standards`
+
+Run the skill's **two-phase workflow** on all files in scope:
+
+**Phase 1 — Collect violations**
+
+1. Load all four reference files from the skill: `common-coding-patterns.md`, `common-naming-patterns.md`, `common-react-patterns.md`, `common-unit-testing.md`.
+2. Audit every file and folder name against `common-naming-patterns.md` (kebab-case, suffixes/prefixes, structure).
+3. Identify every place where code matches an **Avoid** pattern.
+4. Produce a violation report:
+   - **Category** (file/folder naming / coding / naming / React / unit testing)
+   - **Rule name**
+   - **Location** (file + line or snippet)
+   - **Short reason**
+5. If no violations → skip Phase 2, proceed to Step 2.
+
+**Phase 2 — Apply corrections**
+
+1. **Always start with file and folder renames** — rename files/folders that violate naming rules, then update all affected import paths.
+2. Apply each remaining violation's **Prefer** correction in order:
+   - TypeScript safety first
+   - Naming clarity second
+   - React architecture third
+   - Testing structure fourth
+3. Preserve business logic and behavior — structural and naming changes only.
+4. Minimal edits: one fix per violation.
+
+---
+
+### Step 2 — Simplify code
+
+> Skill: `react-single-responsibility`
+
+Apply the skill's simplification strategies to all files in scope:
+
+**Components — decomposition order:**
+
+1. Extract pure utilities (no React dependency) → `component-name.utils.ts`
+2. Refactor multi-`useState` forms → `react-hook-form`
+3. Extract state/effects/derived logic → custom hooks (`use-xyz.ts`)
+4. Split TSX > ~40 lines into sub-components (own file, parent-name prefix)
+
+**Components — structure:**
+
+- Order inside component: types → state → computed const → effects → handlers → render
+- One handler per arrow function; no internal `renderXyz()` methods
+- Early returns for loading/error states; no nested ternary operators
+- Static data and pure functions → outside the component
+
+**Hooks — decomposition order:**
+
+1. Extract pure JS utilities → `.utils.ts` arrow functions
+2. Consider enriching existing state manager (Zustand, MobX) before creating new hooks
+3. Split broad hooks into specialized ones; compose in a thin orchestrator hook
+
+**Methods:**
+
+- > 40 lines → extract named arrow functions, one responsibility each
+- Early returns over nested if/else (max ~2 nesting levels)
+- `const` over `let`; pure helpers with early returns over mutable accumulators
+- > 1 parameter → single params object with destructuring; interface above the function named `<MethodName>Args`
+- Duplicated logic → parameterized arrow function
+
+**Shared:**
+
+- Object destructuring for props, parameters, and local objects
+- File size: 200–400 lines typical; 1000 lines absolute max
+- File names: kebab-case
+
+---
+
+### Step 3 — Re-validate coding standards
+
+> Skill: `react-coding-standards` — **Phase 1 only**
+
+Re-run Phase 1 (violation collection only) on all files modified in Steps 1 and 2.
+
+- **Violations found** → log them, then **go back to Step 1** (new iteration).
+- **No violations** → normalization is complete. Proceed to the summary.
+
+---
+
+## Output — Summary report
+
+After the final iteration, produce a summary:
+
+```
+## Normalize — Summary
+
+**Scope:** <resolved scope>
+**Iterations:** <n>
+
+### Changes applied
+| File | Change type | Description |
+|------|-------------|-------------|
+| ...  | Rename / Refactor / Extract / Split | ... |
+
+### Files created
+- `path/to/new-file.ts` — reason
+
+### Remaining issues (if max iterations reached)
+- ...
+```
+
+---
+
+## Rules of thumb
+
+- **Never change business logic** — only structure, naming, and patterns.
+- **File/folder renames first** in every Step 1 Phase 2, before any in-file edits.
+- **Minimal edits** — one Avoid → one Prefer; do not bundle unrelated changes.
+- **Selected lines scope** — restrict all edits strictly to the specified line range.
+- **Stop at 3 iterations** — report remaining violations rather than looping forever.
