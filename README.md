@@ -1,8 +1,8 @@
-# skills
+# Artificial Intelligence Lichens Tools
 
-Lichens Innovation **Agent Skills** repository — reusable instructions to extend coding agents (Cursor, GitHub Copilot, Claude Code, etc.). Agent Skills started as an open standard from Anthropic (2025); Cursor and GitHub Copilot adopted it shortly after. For the full timeline and how the ecosystem evolved, see [skills history](./SKILLS-HISTORY.md).
+Lichens Innovation repository for **AI-assisted development tools** — a single place for rules, agents, skills, MCP (Model Context Protocol) servers, and any other artifacts that enhance coding with AI (Cursor, GitHub Copilot, Claude Code, etc.). This repo started with Agent Skills and has grown to cover the full spectrum of configurable AI dev tooling. For the skills timeline and ecosystem evolution, see [skills history](./SKILLS-HISTORY.md).
 
-- [skills](#skills)
+- [Artificial Intelligence Lichens Tools](#artificial-intelligence-lichens-tools)
   - [Installation](#installation)
   - [Frequent CLI commands](#frequent-cli-commands)
   - [Validating skills](#validating-skills)
