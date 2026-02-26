@@ -18,6 +18,12 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 
 ---
 
+## Context
+
+This rule applies to a **React and TypeScript** project. The coding standards and simplification strategies it references (naming, patterns, hooks, components) assume React components, TypeScript types/interfaces, and a typical React codebase structure.
+
+---
+
 ## Step 0 — Resolve scope
 
 Before touching any file, identify exactly what to normalize.
