@@ -21,6 +21,8 @@ For the skills timeline and ecosystem evolution, see [skills history](./SKILLS-H
 
 ### Installation
 
+The [skills CLI](https://www.npmjs.com/package/skills) (Vercel) is used to simplify skill management in an AI-agent-agnostic way: one tool installs and updates skills for Cursor, GitHub Copilot, Claude Code, and others.
+
 From a project or any directory:
 
 ```bash
