@@ -79,7 +79,8 @@ The following patterns are derived from real codebase usage. **Use kebab-case ev
 ### Avoid / Prefer summary
 
 - **Prefer** kebab-case for every file and folder name. **Avoid** camelCase, PascalCase, and snake_case in file/folder names (e.g. `usePumpTest.ts`, `TestList/`, `my_module/` → use `use-pump-test.ts`, `test-list/`).
-- **Avoid** generic filenames at root (`utils.ts`, `types.ts`, `config.ts`). **Prefer** domain-prefixed or scoped names (`logger.utils.ts`, `auth.types.ts`, `msal-config.ts`). Use a dedicated `<domain>.types.ts` when types are reused in more than one place; otherwise colocate types next to their single consumer.
+- **Avoid** generic filenames at root (`utils.ts`, `types.ts`, `config.ts`). **Prefer** domain-prefixed or scoped names (`logger.utils.ts`, `auth.types.ts`, `msal-config.ts`).
+- **Avoid** a dedicated types file when types have a single consumer. **Prefer** `<domain>.types.ts` when types are reused in more than one place; otherwise colocate above the component if they only serve that component, or above the method (e.g. parameter interface immediately above it) if they only serve that method.
 - **Avoid** abbreviations in file names when unclear (`export2xlsx.tsx`). **Prefer** readable names (`export-to-xlsx.tsx` or `table-header-export-xlsx.tsx`).
 - **Avoid** mixing suffix order (e.g. `*.utils.ts` vs `*.ts.utils`). **Prefer** consistent suffix after a dot: `<name>.<role>.ts`.
 - **Avoid** putting all hooks in a single global `hooks/` folder when they are feature-specific. **Prefer** colocating `hooks/use-*.ts` under the feature (e.g. `screens/test-list/hooks/`).
