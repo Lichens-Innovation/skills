@@ -26,21 +26,21 @@ The [skills CLI](https://www.npmjs.com/package/skills) (Vercel) is used to simpl
 From a project or any directory:
 
 ```bash
-npx skills add https://github.com/Lichens-Innovation/skills
+npx skills add https://github.com/Lichens-Innovation/ai-dev-tools
 ```
 
 Or using the short form:
 
 ```bash
-npx skills add Lichens-Innovation/skills
+npx skills add Lichens-Innovation/ai-dev-tools
 ```
 
 **Useful options:**
 
 - **Project** (default): skills are installed in the project (e.g. `.agents/skills/`, `.cursor/skills/`, `.claude/skills/`) and can be versioned with the repo.
-- **Global**: `npx skills add Lichens-Innovation/skills -g` — available across all your projects.
-- **Target agents**: `npx skills add Lichens-Innovation/skills -a cursor -a github-copilot -a claude-code`.
-- **List skills** without installing: `npx skills add Lichens-Innovation/skills --list`.
+- **Global**: `npx skills add Lichens-Innovation/ai-dev-tools -g` — available across all your projects.
+- **Target agents**: `npx skills add Lichens-Innovation/ai-dev-tools -a cursor -a github-copilot -a claude-code`.
+- **List skills** without installing: `npx skills add Lichens-Innovation/ai-dev-tools --list`.
 
 ### Frequent CLI commands
 
@@ -107,7 +107,7 @@ To list skills in any repo without installing: `npx skills add owner/repo --list
 Examples:
 
 - `npx skills add github/awesome-copilot/skills --list`
-- `npx skills add Lichens-Innovation/skills --list`
+- `npx skills add Lichens-Innovation/ai-dev-tools --list`
 
 ### Skills for creating skills (comparison)
 
