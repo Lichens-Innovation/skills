@@ -57,6 +57,7 @@ Apply in this order:
 - **Selected items** — Store selection by **ID** in state; **derive** the full item from the list (e.g. `selectedItem = items.find(i => i.id === selectedId)`). Avoids stale references when the list updates.
 - **useMemo / useCallback — only when absolutely necessary** — Default: do not use. Re-renders are often an acceptable tradeoff to promote readability. These hooks add complexity and recent React compilers already optimize renders. Avoid for trivial cases (e.g. `useMemo(() => count * 2, [count])`, `useCallback(() => setOpen(true), [])`). Use only when: **profiling** shows a real performance problem.
 - **Data fetching** — Prefer **TanStack Query** (`useQuery` / `useMutation`) instead of manual `useState` + `useEffect` — reduces boilerplate and keeps the component simpler.
+- **Form state** — When multiple `useState` calls are used to manage a form, consider using **react-hook-form** to simplify the form and its state (validation, submission, and field registration in one place).
 
 ---
 
@@ -66,7 +67,7 @@ Rules that apply when reducing complexity of a **custom React hook**. Apply sing
 
 ### Decomposition order
 
-1. **Extract pure JS utilities first** — Any logic that has no dependency on React (no `useState`, `useEffect`, context, etc.) → move to **pure functions**. Put them in `<component-name>.utils.ts` next to the component or `<hook-name>.utils.ts` next to the hook, or in `src/utils/` if reusable. Examples: formatting, validation, computing derived values from plain data, building query params or request bodies. Pure functions are easier to test and reuse outside the hook.
+1. **Extract pure JS utilities first** — Any logic that has no dependency on React (no `useState`, `useEffect`, context, etc.) → move to **pure exported arrow functions**. For more than one argument, use object destructuring in the function signature and define the parameter interface just above the function. Put extracted arrow function(s) in `<component-name>.utils.ts` next to the component or `<hook-name>.utils.ts` next to the hook, or in `src/utils/` if reusable. Examples: formatting, validation, computing derived values from plain data, building query params or request bodies. Pure functions are easier to test and reuse outside the hook.
 
 2. **Consider enriching an existing state manager** — Before creating new specialized hooks, check if the project already uses a **state manager** (e.g. **Zustand**, **MobX**, Redux). If so, consider **adding the business logic there**: actions, derived state, and domain rules can live in the store and **slim down the hooks**. Hooks then become thin selectors or one-off bindings (e.g. `useStore(selector)`), and the store encapsulates the domain. Prefer extending the existing store over multiplying hooks that each hold their own state.
 
