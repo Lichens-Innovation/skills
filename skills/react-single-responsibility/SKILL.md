@@ -100,7 +100,7 @@ Rules that apply when reducing complexity of a **custom React hook**. Apply sing
 
 Rules that apply when reducing complexity of a **function or method** (non-component).
 
-### Long function (>40 lines)
+### Long function (>150 lines for components _.tsx, >40 for plain _.ts methods)
 
 - **Signal:** Scrolling to understand a single function.
 - **Fix:** Extract into smaller, **named** arrow functions. Apply **single responsibility**: each new method must stay **simple and focused on one task only** (e.g. validate → fetch → persist → notify). Each step should be testable in isolation.
