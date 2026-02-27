@@ -91,7 +91,7 @@
   - [Move data outside the component for cleaner code](#move-data-outside-the-component-for-cleaner-code)
     - [❌ Avoid keeping unnecessary data inside the component](#-avoid-keeping-unnecessary-data-inside-the-component)
     - [✅ Prefer moving static data and functions outside the component](#-prefer-moving-static-data-and-functions-outside-the-component)
-    - [ℹ️ Explanations](#ℹ️-explanations)
+    - [ℹ️ Explanations](#ℹ️-explanations-7)
   - [Store the Selected Item by ID](#store-the-selected-item-by-id)
     - [❌ Avoid storing the entire item](#-avoid-storing-the-entire-item)
     - [✅ Prefer storing the item ID](#-prefer-storing-the-item-id)
@@ -99,31 +99,31 @@
   - [Clarify the Distinction Between Initial State and Current State](#clarify-the-distinction-between-initial-state-and-current-state)
     - [❌ Avoid unclear naming for state variables](#-avoid-unclear-naming-for-state-variables)
     - [✅ Prefer clear naming to differentiate initial state and current state](#-prefer-clear-naming-to-differentiate-initial-state-and-current-state)
-    - [ℹ️ Explanation](#ℹ️-explanation)
+    - [ℹ️ Explanation](#ℹ️-explanation-13)
   - [Always Clean Up in Your `useEffect` Hooks](#always-clean-up-in-your-useeffect-hooks)
     - [❌ Avoid forgetting to clean up side effects](#-avoid-forgetting-to-clean-up-side-effects)
     - [✅ Prefer cleaning up side effects with a cleanup function](#-prefer-cleaning-up-side-effects-with-a-cleanup-function)
-    - [ℹ️ Explanation](#ℹ️-explanation-1)
+    - [ℹ️ Explanation](#ℹ️-explanation-14)
   - [Prefer Functions Over Custom Hooks](#prefer-functions-over-custom-hooks)
     - [❌ Avoid creating unnecessary custom hooks](#-avoid-creating-unnecessary-custom-hooks)
     - [✅ Prefer using plain functions instead](#-prefer-using-plain-functions-instead)
-    - [ℹ️ Explanation](#ℹ️-explanation-13)
+    - [ℹ️ Explanation](#ℹ️-explanation-15)
   - [Use `ReactNode` instead of `JSX.Element | null | undefined`](#use-reactnode-instead-of-jsxelement--null--undefined)
     - [❌ Avoid typing props with JSX.Element | null | undefined](#-avoid-typing-props-with-jsxelement--null--undefined)
     - [✅ Prefer using `ReactNode` for more compact code](#-prefer-using-reactnode-for-more-compact-code)
-    - [ℹ️ Explanation](#ℹ️-explanation-14)
+    - [ℹ️ Explanation](#ℹ️-explanation-16)
   - [Simplify Typing of Components Expecting Children Props](#simplify-typing-of-components-expecting-children-props)
     - [❌ Avoid manually typing the children prop](#-avoid-manually-typing-the-children-prop)
     - [✅ Prefer using PropsWithChildren for typing children props](#-prefer-using-propswithchildren-for-typing-children-props)
-    - [ℹ️ Explanation](#ℹ️-explanation-15)
+    - [ℹ️ Explanation](#ℹ️-explanation-17)
   - [Specify Types Explicitly in useState, useRef, etc.](#specify-types-explicitly-in-usestate-useref-etc)
     - [❌ Avoid omitting types when they can't be inferred](#-avoid-omitting-types-when-they-cant-be-inferred)
     - [✅ Prefer specifying types explicitly when they can't be inferred](#-prefer-specifying-types-explicitly-when-they-cant-be-inferred)
-    - [ℹ️ Explanation](#ℹ️-explanation-16)
+    - [ℹ️ Explanation](#ℹ️-explanation-18)
   - [Use ElementRef Type Helper for Typing Refs](#use-elementref-type-helper-for-typing-refs)
     - [❌ Avoid typing refs directly with element type names](#-avoid-typing-refs-directly-with-element-type-names)
     - [✅ Prefer using the ElementRef type helper for typing refs](#-prefer-using-the-elementref-type-helper-for-typing-refs)
-    - [ℹ️ Explanation](#ℹ️-explanation-17)
+    - [ℹ️ Explanation](#ℹ️-explanation-19)
 
 # Project React coding standards
 
@@ -1169,8 +1169,6 @@ const Dashboard = () => {
   - Component returns that require multiple elements
   - List rendering where wrapper elements would break the layout
   - Complex layouts where DOM hierarchy matters
-
-Je vais reformatter cette règle de développement selon vos critères.
 
 ## Use React Fragment Shorthand
 
