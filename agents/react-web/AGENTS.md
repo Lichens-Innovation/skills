@@ -28,25 +28,27 @@ If the user asks to **normalize** the code (e.g. "normalize", "normalize this co
 
 Execute all steps in order; do not summarize the workflow.
 
-1. **Resolve scope** — Determine the initial set of files in scope (selected files, git staged files, branch, selected lines, directory, or glob). Maintain a **current scope** for the whole run: start with this initial set, and **add to it every file you create or modify** during the workflow (steps 2–4), e.g. renamed paths, new sub-components, or any file touched by the skills. Steps 2, 3, and 4 always run on the **current scope**. Whenever you create or modify a file, add it to the current scope so that subsequent steps and re-validation (5–6) always consider the full set of files touched by this normalization run.
+1. **Check linter configuration** — Read the project's `package.json` and ensure `scripts.lint` exists. If the linter is **not** configured: **stop the workflow**, do not run steps 2–8, and tell the user that normalization requires a configured linter and suggest using the skill **react-linter-setup** (e.g. "Le linter n'est pas configuré pour ce projet. Arrêtez ici et utilisez le skill **react-linter-setup** pour configurer ESLint et les scripts lint dans package.json, puis relancez la normalisation."). Only proceed to step 2 if the check passes.
 
-2. **Run react-files-structure-standards** — Read [skills/react-files-structure-standards/SKILL.md](skills/react-files-structure-standards/SKILL.md) and the reference file it specifies. Execute the skill's full two-phase workflow (Phase 1: collect file/folder violations, Phase 2: rename and update imports) on all paths in the **current scope**. After creating or renaming files, add those paths to the current scope. Do not summarize the skill's workflow in this rule; follow the skill as written.
+2. **Resolve scope** — Determine the initial set of files in scope (selected files, git staged files, branch, selected lines, directory, or glob). Maintain a **current scope** for the whole run: start with this initial set, and **add to it every file you create or modify** during the workflow (steps 3–5), e.g. renamed paths, new sub-components, or any file touched by the skills. Steps 3, 4, and 5 always run on the **current scope**. Whenever you create or modify a file, add it to the current scope so that subsequent steps and re-validation (6–7) always consider the full set of files touched by this normalization run.
 
-3. **Run react-coding-standards** — Read [skills/react-coding-standards/SKILL.md](skills/react-coding-standards/SKILL.md) and the reference files it specifies. Execute **every phase** of the skill's workflow in order on all files in the **current scope**. Do not summarize the skill's workflow in this rule; follow the skill as written.
+3. **Run react-files-structure-standards** — Read [skills/react-files-structure-standards/SKILL.md](skills/react-files-structure-standards/SKILL.md) and the reference file it specifies. Execute the skill's full two-phase workflow (Phase 1: collect file/folder violations, Phase 2: rename and update imports) on all paths in the **current scope**. After creating or renaming files, add those paths to the current scope. Do not summarize the skill's workflow in this rule; follow the skill as written.
 
-4. **Run react-single-responsibility** — Read [skills/react-single-responsibility/SKILL.md](skills/react-single-responsibility/SKILL.md). Execute the skill's simplification strategies on all files in the **current scope**. After creating new files (e.g. sub-components), add those files to the current scope. Let the skill define decomposition order, structure, and rules; do not repeat them here.
+4. **Run react-coding-standards** — Read [skills/react-coding-standards/SKILL.md](skills/react-coding-standards/SKILL.md) and the reference files it specifies. Execute **every phase** of the skill's workflow in order on all files in the **current scope**. Do not summarize the skill's workflow in this rule; follow the skill as written.
 
-5. **Re-validate coding standards** — Re-run react-coding-standards for **validation only**: execute every phase that **detects or lists** violations (skip phases that **apply corrections**) on all files in the **current scope** (i.e. initial set plus every file created or modified during steps 2–4). Include every file touched by the workflow so that new or modified code is also checked; otherwise violations in those files will not trigger a new iteration.
-   - If any violations are found → log them, then go back to step 3 (new iteration).
-   - If no violations → proceed to step 6.
+5. **Run react-single-responsibility** — Read [skills/react-single-responsibility/SKILL.md](skills/react-single-responsibility/SKILL.md). Execute the skill's simplification strategies on all files in the **current scope**. After creating new files (e.g. sub-components), add those files to the current scope. Let the skill define decomposition order, structure, and rules; do not repeat them here.
+
+6. **Re-validate coding standards** — Re-run react-coding-standards for **validation only**: execute every phase that **detects or lists** violations (skip phases that **apply corrections**) on all files in the **current scope** (i.e. initial set plus every file created or modified during steps 3–5). Include every file touched by the workflow so that new or modified code is also checked; otherwise violations in those files will not trigger a new iteration.
+   - If any violations are found → log them, then go back to step 4 (new iteration).
+   - If no violations → proceed to step 7.
    - **Max 2 iterations.** If violations still exist after 2 full cycles, report the remaining issues and stop.
 
-6. **Re-validate single-responsibility** — Re-run the react-single-responsibility criteria (checklists and simplification rules from the skill) on all files in the **current scope** (i.e. initial set plus every file created or modified during steps 2–4). Include every file touched by the workflow so that new or modified code is also checked.
-   - If any violations are found → log them, then go back to step 3 (new iteration).
+7. **Re-validate single-responsibility** — Re-run the react-single-responsibility criteria (checklists and simplification rules from the skill) on all files in the **current scope** (i.e. initial set plus every file created or modified during steps 3–5). Include every file touched by the workflow so that new or modified code is also checked.
+   - If any violations are found → log them, then go back to step 4 (new iteration).
    - If no violations → proceed to the summary.
    - **Max 2 iterations.** If violations still exist after 2 full cycles, report the remaining issues and stop.
 
-7. **Produce the summary** (see Output below).
+8. **Produce the summary** (see Output below).
 
 ---
 
