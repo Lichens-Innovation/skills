@@ -51,7 +51,7 @@ Apply in this order:
 
 3. **Extract logic into hooks** — State, effects, derived logic → hooks (`use-xyz.ts`). Reusable → `src/hooks/`; feature-specific → feature's `hooks/` subdirectory. Prefer a **plain arrow function** over a custom hook when you don't need React primitives.
 
-4. **Split the visual layer into sub-components** — If render/TSX exceeds roughly **40 lines**, extract sub-components with clear props and a single responsibility. **Avoid internal `renderXyz()` methods**: turn each into a **regular component** (own file, own props). Each sub-component **must live in its own file**; use **parent file name as prefix**: `parent-name-<sub-component-name>.tsx` (e.g. `market-list-item.tsx`, `market-list-filters.tsx` for parent `market-list.tsx`). Large component (>150 lines) → split into list container, list item, filters, pure functions and hook(s) as necessary for data logic.
+4. **Split the visual layer into sub-components** — If render/TSX exceeds roughly **100 lines**, extract sub-components with clear props and a single responsibility. **Avoid internal `renderXyz()` methods**: turn each into a **regular component** (own file, own props). Each sub-component **must live in its own file**; use **parent file name as prefix**: `parent-name-<sub-component-name>.tsx` (e.g. `market-list-item.tsx`, `market-list-filters.tsx` for parent `market-list.tsx`). Large component (>150 lines) → split into list container, list item, filters, pure functions and hook(s) as necessary for data logic.
 
 ### Structure and readability
 
