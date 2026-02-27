@@ -65,7 +65,7 @@ Generate a concise pull request description by analyzing git changes and using t
        - Example: `- [Add login screen](https://company.atlassian.net/browse/PROJ-123)` or `- [PROJ-123](https://company.atlassian.net/browse/PROJ-123)`
    - If the user leaves the list empty or says “none”, keep "Related Issue(s)" as `- 🚫`.
 
-7. **Enforce 600 character limit**
+7. **Enforce 1000 character limit**
    - Count total characters including markdown syntax
    - If over limit, prioritize:
      1. Keep the title
