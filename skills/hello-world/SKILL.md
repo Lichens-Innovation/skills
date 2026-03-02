@@ -1,6 +1,6 @@
 ---
 name: hello-world
-description: "Welcomes the user in ASCII art with OS information. Use when the user says 'hello' or 'hi'."
+description: "This skill welcomes users in ASCII art with OS information. Use when the user says 'hello' or 'hi'."
 ---
 
 ## When to use
