@@ -14,55 +14,59 @@
     - [✅ prefer divide to conquer rule through small sub-components](#-prefer-divide-to-conquer-rule-through-small-sub-components-1)
     - [ℹ️ Explanation](#ℹ️-explanation-1)
     - [📚 References](#-references-2)
+  - [Avoid storing JSX in variables and injecting in the return](#avoid-storing-jsx-in-variables-and-injecting-in-the-return)
+    - [❌ avoid storing JSX in variables (e.g. labelNode, textNode)](#-avoid-storing-jsx-in-variables-eg-labelnode-textnode)
+    - [✅ prefer small declared components with props](#-prefer-small-declared-components-with-props)
+    - [ℹ️ Explanation](#ℹ️-explanation-2)
   - [Event handlers — where to put them](#event-handlers--where-to-put-them)
     - [❌ avoid](#-avoid)
     - [✅ prefer](#-prefer)
-    - [ℹ️ Explanation](#ℹ️-explanation-2)
+    - [ℹ️ Explanation](#ℹ️-explanation-3)
   - [Conditionally executable handlers — use a dedicated handler with early returns](#conditionally-executable-handlers--use-a-dedicated-handler-with-early-returns)
     - [❌ avoid inline conditional execution in event props](#-avoid-inline-conditional-execution-in-event-props)
     - [✅ prefer a dedicated handler with early returns](#-prefer-a-dedicated-handler-with-early-returns)
-    - [ℹ️ Explanation](#ℹ️-explanation-3)
+    - [ℹ️ Explanation](#ℹ️-explanation-4)
   - [Promote pure typescript functions](#promote-pure-typescript-functions)
     - [❌ avoid inline unsharable code](#-avoid-inline-unsharable-code)
     - [✅ prefer pure typescript extracted logic](#-prefer-pure-typescript-extracted-logic)
-    - [ℹ️ Explanation](#ℹ️-explanation-4)
+    - [ℹ️ Explanation](#ℹ️-explanation-5)
   - [Avoid Misusing the `use` Prefix](#avoid-misusing-the-use-prefix)
     - [❌ Avoid Misusing the `use` Prefix for Non-Hook Functions](#-avoid-misusing-the-use-prefix-for-non-hook-functions)
     - [✅ Prefer a More Descriptive Name for Pure Functions](#-prefer-a-more-descriptive-name-for-pure-functions)
-    - [ℹ️ Explanation](#ℹ️-explanation-5)
+    - [ℹ️ Explanation](#ℹ️-explanation-6)
   - [Avoid Simple Assignment in State Update Functions](#avoid-simple-assignment-in-state-update-functions)
     - [❌ Avoid Simple Assignment for State Updates Dependent on Current State](#-avoid-simple-assignment-for-state-updates-dependent-on-current-state)
     - [✅ Prefer Using Setter Function for State Updates Dependent on Current State](#-prefer-using-setter-function-for-state-updates-dependent-on-current-state)
-    - [ℹ️ Explanation](#ℹ️-explanation-6)
+    - [ℹ️ Explanation](#ℹ️-explanation-7)
   - [Prefer useToggle from @uidotdev/usehooks for Boolean Toggle State](#prefer-usetoggle-from-uidotdevusehooks-for-boolean-toggle-state)
     - [❌ Avoid useState for Simple Open/Close or Show/Hide Toggles](#-avoid-usestate-for-simple-openclose-or-showhide-toggles)
     - [✅ Prefer useToggle When @uidotdev/usehooks Is Present](#-prefer-usetoggle-when-uidotdevusehooks-is-present)
-    - [ℹ️ Explanation](#ℹ️-explanation-7)
+    - [ℹ️ Explanation](#ℹ️-explanation-8)
   - [Prefer External Filters and Sorters Over Inline Logic in Rendering](#prefer-external-filters-and-sorters-over-inline-logic-in-rendering)
     - [❌ Avoid Using Inline Logic for Filtering and Sorting in the Rendering Template](#-avoid-using-inline-logic-for-filtering-and-sorting-in-the-rendering-template)
     - [✅ Prefer Using External Filters and Sorters for Better Readability](#-prefer-using-external-filters-and-sorters-for-better-readability)
-    - [ℹ️ Explanation](#ℹ️-explanation-8)
+    - [ℹ️ Explanation](#ℹ️-explanation-9)
   - [Prefer External Utility Functions Over Complex Logic in the Rendering Template](#prefer-external-utility-functions-over-complex-logic-in-the-rendering-template)
     - [❌ Avoid Complex Logic in the Rendering Template](#-avoid-complex-logic-in-the-rendering-template)
     - [✅ Prefer Using External Utility Functions for Better Readability](#-prefer-using-external-utility-functions-for-better-readability)
-    - [ℹ️ Explanation](#ℹ️-explanation-9)
+    - [ℹ️ Explanation](#ℹ️-explanation-10)
   - [Prefer Using Hooks for Business Logic Over Returning React Components](#prefer-using-hooks-for-business-logic-over-returning-react-components)
     - [❌ Avoid Using Hooks to Return React Components](#-avoid-using-hooks-to-return-react-components)
     - [✅ Prefer Using Hooks for Business Logic and Keep Rendering Separate](#-prefer-using-hooks-for-business-logic-and-keep-rendering-separate)
-    - [ℹ️ Explanation](#ℹ️-explanation-10)
+    - [ℹ️ Explanation](#ℹ️-explanation-11)
   - [Prefer Using `gap`, `rowGap`, and `columnGap` Over `margin` or `padding` in React Native](#prefer-using-gap-rowgap-and-columngap-over-margin-or-padding-in-react-native)
     - [❌ Avoid Using `margin` or `padding` for Spacing Between Elements](#-avoid-using-margin-or-padding-for-spacing-between-elements)
     - [✅ Prefer Using `gap`, `rowGap`, and `columnGap` for Spacing Between Elements](#-prefer-using-gap-rowgap-and-columngap-for-spacing-between-elements)
-    - [ℹ️ Explanation](#ℹ️-explanation-11)
+    - [ℹ️ Explanation](#ℹ️-explanation-12)
   - [Prefer Using Early Returns for Simplified Rendering in React Components](#prefer-using-early-returns-for-simplified-rendering-in-react-components)
     - [❌ Avoid Complex Conditional Rendering with Nested Ternaries](#-avoid-complex-conditional-rendering-with-nested-ternaries)
     - [✅ Prefer Using Early Returns for Improved Readability and Maintainability](#-prefer-using-early-returns-for-improved-readability-and-maintainability)
-    - [ℹ️ Explanation](#ℹ️-explanation-12)
+    - [ℹ️ Explanation](#ℹ️-explanation-13)
     - [📚 Additional Resources](#-additional-resources)
   - [Prefer Breaking Down `<GodComponents />` into Subcomponents](#prefer-breaking-down-godcomponents--into-subcomponents)
     - [❌ Avoid Complex Components with Excessive Responsibilities](#-avoid-complex-components-with-excessive-responsibilities)
     - [✅ Prefer Breaking Down God Components into Smaller Subcomponents](#-prefer-breaking-down-god-components-into-smaller-subcomponents)
-    - [ℹ️ Explanation](#ℹ️-explanation-13)
+    - [ℹ️ Explanation](#ℹ️-explanation-14)
     - [📚 Additional Resources](#-additional-resources-1)
   - [Avoid Numeric Index for the Key Value of a React Element](#avoid-numeric-index-for-the-key-value-of-a-react-element)
     - [❌ Avoid direct index usage as key](#-avoid-direct-index-usage-as-key)
@@ -103,35 +107,35 @@
   - [Store the Selected Item by ID](#store-the-selected-item-by-id)
     - [❌ Avoid storing the entire item](#-avoid-storing-the-entire-item)
     - [✅ Prefer storing the item ID](#-prefer-storing-the-item-id)
-    - [ℹ️ Explanation](#ℹ️-explanation-14)
+    - [ℹ️ Explanation](#ℹ️-explanation-15)
   - [Clarify the Distinction Between Initial State and Current State](#clarify-the-distinction-between-initial-state-and-current-state)
     - [❌ Avoid unclear naming for state variables](#-avoid-unclear-naming-for-state-variables)
     - [✅ Prefer clear naming to differentiate initial state and current state](#-prefer-clear-naming-to-differentiate-initial-state-and-current-state)
-    - [ℹ️ Explanation](#ℹ️-explanation-15)
+    - [ℹ️ Explanation](#ℹ️-explanation-16)
   - [Always Clean Up in Your `useEffect` Hooks](#always-clean-up-in-your-useeffect-hooks)
     - [❌ Avoid forgetting to clean up side effects](#-avoid-forgetting-to-clean-up-side-effects)
     - [✅ Prefer cleaning up side effects with a cleanup function](#-prefer-cleaning-up-side-effects-with-a-cleanup-function)
-    - [ℹ️ Explanation](#ℹ️-explanation-16)
+    - [ℹ️ Explanation](#ℹ️-explanation-17)
   - [Prefer Functions Over Custom Hooks](#prefer-functions-over-custom-hooks)
     - [❌ Avoid creating unnecessary custom hooks](#-avoid-creating-unnecessary-custom-hooks)
     - [✅ Prefer using plain functions instead](#-prefer-using-plain-functions-instead)
-    - [ℹ️ Explanation](#ℹ️-explanation-17)
+    - [ℹ️ Explanation](#ℹ️-explanation-18)
   - [Use `ReactNode` instead of `JSX.Element | null | undefined`](#use-reactnode-instead-of-jsxelement--null--undefined)
     - [❌ Avoid typing props with JSX.Element | null | undefined](#-avoid-typing-props-with-jsxelement--null--undefined)
     - [✅ Prefer using `ReactNode` for more compact code](#-prefer-using-reactnode-for-more-compact-code)
-    - [ℹ️ Explanation](#ℹ️-explanation-18)
+    - [ℹ️ Explanation](#ℹ️-explanation-19)
   - [Simplify Typing of Components Expecting Children Props](#simplify-typing-of-components-expecting-children-props)
     - [❌ Avoid manually typing the children prop](#-avoid-manually-typing-the-children-prop)
     - [✅ Prefer using PropsWithChildren for typing children props](#-prefer-using-propswithchildren-for-typing-children-props)
-    - [ℹ️ Explanation](#ℹ️-explanation-19)
+    - [ℹ️ Explanation](#ℹ️-explanation-20)
   - [Specify Types Explicitly in useState, useRef, etc.](#specify-types-explicitly-in-usestate-useref-etc)
     - [❌ Avoid omitting types when they can't be inferred](#-avoid-omitting-types-when-they-cant-be-inferred)
     - [✅ Prefer specifying types explicitly when they can't be inferred](#-prefer-specifying-types-explicitly-when-they-cant-be-inferred)
-    - [ℹ️ Explanation](#ℹ️-explanation-20)
+    - [ℹ️ Explanation](#ℹ️-explanation-21)
   - [Use ElementRef Type Helper for Typing Refs](#use-elementref-type-helper-for-typing-refs)
     - [❌ Avoid typing refs directly with element type names](#-avoid-typing-refs-directly-with-element-type-names)
     - [✅ Prefer using the ElementRef type helper for typing refs](#-prefer-using-the-elementref-type-helper-for-typing-refs)
-    - [ℹ️ Explanation](#ℹ️-explanation-21)
+    - [ℹ️ Explanation](#ℹ️-explanation-22)
 
 # Project React coding standards
 
@@ -141,6 +145,7 @@ This section outlines the coding patterns recommended for the project, focusing 
 - **Divide and Conquer**: Break down complex problems into smaller, more manageable functions, each with a single responsibility.
 - **Promote Reusability**: Develop components and functions that can be reused across different parts of the application, enhancing consistency and reducing redundancy.
 - **Encourage Maintainability**: Write code that is easy to understand, modify, and extend, ensuring long-term maintainability and reducing technical debt.
+- **Use arrow function syntax**: Prefer arrow functions for components and handlers (e.g. `const MyComponent = (props) => { ... }`, `const handleClick = () => { ... }`) so that examples and codebase stay consistent.
 
 By adhering to these principles, the project will benefit from cleaner, more efficient, and more sustainable code.
 
@@ -282,6 +287,73 @@ Creating small dumb components:
 ### 📚 References
 
 - [3 React Mistakes, 1 App Killer](https://youtube.com/watch?v=QuLfCUh-iwI&si=JofynxnU-J58sA53)
+
+## Avoid storing JSX in variables and injecting in the return
+
+Storing JSX in variables (e.g. `labelNode`, `textNode`) and injecting them in the return blurs component boundaries, hinders reuse and testability, and goes against single responsibility. Prefer small, declared components with explicit props.
+
+### ❌ avoid storing JSX in variables (e.g. labelNode, textNode)
+
+```tsx
+const labelNode = !isNullish(displayLabel) ? (
+  <Text variant="bodyLarge" style={styles.checkboxesTitle}>
+    {displayLabel}
+  </Text>
+) : null;
+
+const textNode = (
+  <Text variant="bodyLarge" style={styles.checkboxesTitle}>
+    {text}
+  </Text>
+);
+
+// ...
+
+return (
+  <View style={styles.checkboxRow}>
+    <Switch value={checked} onValueChange={handleValueChange} disabled={disabled} />
+    {labelNode}
+  </View>
+);
+```
+
+### ✅ prefer small declared components with props
+
+Extract small components with clear props so they are reusable and have a single responsibility:
+
+```tsx
+type CheckboxRowLabelProps = {
+  displayLabel?: string | null;
+  variant?: "bodyLarge";
+  style?: StyleProp<TextStyle>;
+};
+
+const CheckboxRowLabel = ({ displayLabel, variant = "bodyLarge", style }: CheckboxRowLabelProps) => {
+  if (isNullish(displayLabel)) return null;
+  return (
+    <Text variant={variant} style={style}>
+      {displayLabel}
+    </Text>
+  );
+};
+
+// In the parent component:
+return (
+  <View style={styles.checkboxRow}>
+    <Switch value={checked} onValueChange={handleValueChange} disabled={disabled} />
+    <CheckboxRowLabel displayLabel={displayLabel} style={styles.checkboxesTitle} />
+  </View>
+);
+```
+
+<a id="explanation-jsx-variables"></a>
+
+### ℹ️ Explanation
+
+- **Reusability**: Declared components can be reused elsewhere and tested in isolation.
+- **Single responsibility**: Each component has one job; the parent composes them instead of building JSX in variables.
+- **Clarity**: Props make the data flow explicit; “node” variables hide what the UI depends on.
+- **Consistency**: Aligns with “divide and conquer” and the existing rule against `{renderXyz()}` and inline template renderers.
 
 ## Event handlers — where to put them
 
